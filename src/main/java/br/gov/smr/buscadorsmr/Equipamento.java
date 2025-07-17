@@ -4,20 +4,41 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Equipamento {
-    private final StringProperty nroBM = new SimpleStringProperty();
-    private final StringProperty id = new SimpleStringProperty();
-    private final StringProperty serie = new SimpleStringProperty();
-    private final StringProperty marcaRadio = new SimpleStringProperty();
-    private final StringProperty modeloRadio = new SimpleStringProperty();
-    private final StringProperty prefixoVtr = new SimpleStringProperty();
-    private final StringProperty placas = new SimpleStringProperty();
-    private final StringProperty modeloVtr = new SimpleStringProperty();
-    private final StringProperty comando = new SimpleStringProperty();
-    private final StringProperty opm = new SimpleStringProperty();
-    private final StringProperty municipio = new SimpleStringProperty();
-    private final StringProperty observacao = new SimpleStringProperty();
+    private  StringProperty nroBM = new SimpleStringProperty();
+    private  StringProperty id = new SimpleStringProperty();
+    private  StringProperty serie = new SimpleStringProperty();
+    private  StringProperty marcaRadio = new SimpleStringProperty();
+    private  StringProperty modeloRadio = new SimpleStringProperty();
+    private  StringProperty prefixoVtr = new SimpleStringProperty();
+    private  StringProperty placas = new SimpleStringProperty();
+    private  StringProperty modeloVtr = new SimpleStringProperty();
+    private  StringProperty comando = new SimpleStringProperty();
+    private  StringProperty opm = new SimpleStringProperty();
+    private  StringProperty municipio = new SimpleStringProperty();
+    private  StringProperty observacao = new SimpleStringProperty();
 	
-    public Equipamento() {
+    
+    
+    public Equipamento(String nroBM, String id, String serie,
+            String marcaRadio, String modeloRadio,
+            String prefixoVtr, String placas,
+            String modeloVtr, String comando,
+            String opm, String municipio, String observacao) {
+        this.nroBM = new SimpleStringProperty(nroBM);
+        this.id = new SimpleStringProperty(id);
+        this.serie = new SimpleStringProperty(serie);
+        this.marcaRadio = new SimpleStringProperty(marcaRadio);
+        this.modeloRadio = new SimpleStringProperty(modeloRadio);
+        this.prefixoVtr = new SimpleStringProperty(prefixoVtr);
+        this.placas = new SimpleStringProperty(placas);
+        this.modeloVtr = new SimpleStringProperty(modeloVtr);
+        this.comando = new SimpleStringProperty(comando);
+        this.opm = new SimpleStringProperty(opm);
+        this.municipio = new SimpleStringProperty(municipio);
+        this.observacao = new SimpleStringProperty(observacao);
+    }
+
+	public Equipamento() {
     	
     }
 
