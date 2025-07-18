@@ -9,6 +9,8 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.shape.Rectangle?>
+
 
 <BorderPane xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.gov.smr.buscadorsmr.MainWindowController">
 
@@ -44,18 +46,50 @@
     </center>
 
     <bottom>
-        <HBox alignment="CENTER_RIGHT" spacing="10">
-            <padding>
-                <Insets bottom="10" left="10" right="10" top="10" />
-            </padding>
-         <Label fx:id="lblCount" prefHeight="17.0" prefWidth="100.0" text="Total: 0" HBox.hgrow="ALWAYS" />
-            <Button fx:id="btnAdd" onAction="#onAddClicked" text="Adicionar Novo" />
-         <Button fx:id="btnAltSitRadio" onAction="#onAltSitRadioClicked" text="Alterar situação Radio" />
-            <Button fx:id="btnEdit" onAction="#onEditClicked" text="Editar" />
-            <Button fx:id="btnSave" onAction="#onSaveClicked" text="Salvar" />
-            <Button fx:id="btnExportIds" onAction="#onExportIdsClicked" text="Alterar ID para livre" />
-         <Button fx:id="btnVerListaId" onAction="#onAddClicked" text="Ver lista ID's livres" />
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <padding>
+            <Insets bottom="10" left="10" right="10" top="10" />
+        </padding>
+        <!-- Legenda -->
+        <HBox spacing="6">
+            <Label>
+                <graphic>
+                    <Rectangle width="18" height="18" arcWidth="6" arcHeight="6" fill="#b6fcb6"/>
+                </graphic>
+            </Label>
+            <Label text="QAP- Circulando" />
+            <Label>
+                <graphic>
+                    <Rectangle width="18" height="18" arcWidth="6" arcHeight="6" fill="#ffc7c7"/>
+                </graphic>
+            </Label>
+            <Label text="FA - baixado" />
+            <Label>
+                <graphic>
+                    <Rectangle width="18" height="18" arcWidth="6" arcHeight="6" fill="#b6e0fc"/>
+                </graphic>
+            </Label>
+            <Label text="Recolhido ao CMTEC" />
+            <Label>
+                <graphic>
+                    <Rectangle width="18" height="18" arcWidth="6" arcHeight="6" fill="#fcfcb6"/>
+                </graphic>
+            </Label>
+            <Label text="Garantia" />
         </HBox>
-    </bottom>
+
+        <!-- Separador flexível para empurrar botões à direita -->
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <!-- Botões e contadores -->
+        <Label fx:id="lblCount" prefHeight="17.0" prefWidth="100.0" text="Total: 0" />
+        <Button fx:id="btnAdd" onAction="#onAddClicked" text="Adicionar Novo" />
+        <Button fx:id="btnAltSitRadio" onAction="#onAltSitRadioClicked" text="Alterar situação Radio" />
+        <Button fx:id="btnEdit" onAction="#onEditClicked" text="Editar" />
+        <Button fx:id="btnSave" onAction="#onSaveClicked" text="Salvar" />
+        <Button fx:id="btnExportIds" onAction="#onExportIdsClicked" text="Alterar ID para livre" />
+        <Button fx:id="btnVerListaId" onAction="#onAddClicked" text="Ver lista ID's livres" />
+    </HBox>
+</bottom>
 
 </BorderPane>

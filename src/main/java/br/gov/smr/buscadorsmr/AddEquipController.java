@@ -37,4 +37,19 @@ public class AddEquipController {
 	    public Equipamento getResult() {
 	        return result;
 	    }
+	    
+	    public void setEquipamento(Equipamento eq) {
+	        txtNroBM.setText(eq.getNroBM());
+	        txtId.setText(eq.getId());
+	        txtSerie.setText(eq.getSerie());
+	        txtMarcaRadio.setText(eq.getMarcaRadio());
+	        txtModeloRadio.setText(eq.getModeloRadio());
+	        txtPrefixoVtr.setText(eq.getPrefixoVtr());
+	        txtPlacas.setText(eq.getPlacas());
+	        txtModeloVtr.setText(eq.getModeloVtr());
+	        txtComando.setText(eq.getComando());
+	        txtOpm.setText(eq.getOpm());
+	        txtMunicipio.setText(eq.getMunicipio());
+	        txtObservacao.setText(eq.getObservacao());
+	    }
 	}
