@@ -34,6 +34,7 @@ public class MainWindowController {
     colComando, colOpm, colMunicipio, colObservacao;
     
     private ObservableList<Equipamento> masterList = FXCollections.observableArrayList();
+    private ObservableList<String> listaIdsLivres = FXCollections.observableArrayList();
     private ExcelService service = new ExcelService();
     
     @FXML
@@ -227,10 +228,75 @@ public class MainWindowController {
     private void onSaveClicked() { }
 
     @FXML
-    private void onExportIdsClicked() { }
+    private void onExportIdsClicked() {
+    	Equipamento selecionado = tableEquip.getSelectionModel().getSelectedItem();
+    	if(selecionado == null ) {
+            alerta("Nenhum item selecionado!", "Selecione um equipamento para remover o ID.");
+   		return;
+    	}
+    	String idRemovida = selecionado.getId();
+    	if (idRemovida == null || idRemovida.isBlank() || idRemovida.equals("ID removida")) {
+            alerta("ID já removida!", "Este equipamento já está sem ID.");
+    		return;
+    	}
+    	listaIdsLivres.add(idRemovida); //Adiciona alista de Id removida
+    	selecionado.idProperty().set("ID removida"); // Altera na tabela 
+    	tableEquip.refresh();
+    	}
 
     @FXML
-    private void onVerListaIdClicked() { } 
+    private void onVerListaIdsMenu() {
+        StringBuilder sb = new StringBuilder("IDs livres:\n");
+        if (listaIdsLivres.isEmpty()) {
+            sb.append("Nenhum ID livre disponível.");
+        } else {
+            for (String id : listaIdsLivres) {
+                sb.append(id).append("\n");
+            }
+        }
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+        alert.setTitle("Lista de IDs livres");
+        alert.setHeaderText("IDs disponíveis para uso:");
+        alert.setContentText(sb.toString());
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void onAtribuirIdMenu() {
+    	Equipamento selecionado = tableEquip.getSelectionModel().getSelectedItem();
+    	if(selecionado == null) {
+    		alerta("Nenhum item selecionado!", "Selecione um equipamento para atribuir um ID");
+    		return;
+    	}
+    	String idAtual = selecionado.getId();
+    	if (idAtual != null && !idAtual.isBlank() && !idAtual.equals("ID removida")) {
+    		alerta("Item ja possui ID!", "Selecione um equipamento com ID em branco");
+    		return;
+    	}
+    	if (listaIdsLivres.isEmpty()) {
+    		alerta("Sem IDs livres", "Não há Ids livres para atribuir.");
+    		return;
+    	}
+    	// Fazer a escolha do ID para atribuir
+    	ChoiceDialog<String> escolha = new ChoiceDialog<>(listaIdsLivres.get(0), listaIdsLivres);
+    	escolha.setTitle("Atribuir ID Livre");
+    	escolha.setHeaderText("Escolha um ID livre para atribuir:");
+    	escolha.setContentText("ID:");
+    	Optional<String> escolhido = escolha.showAndWait();
+    	escolhido.ifPresent(id ->{
+    		selecionado.idProperty().set(id);
+    		listaIdsLivres.remove(id);
+    		tableEquip.refresh();
+    	});
+    }
+    
+    private void alerta(String titulo, String texto) {
+    	javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+    	alert.setTitle(titulo);
+    	alert.setHeaderText(null);
+    	alert.setContentText(texto);
+    	alert.showAndWait();
+    }
 }
     
 

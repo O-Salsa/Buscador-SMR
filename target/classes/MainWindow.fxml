@@ -10,6 +10,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.MenuItem?>
 
 
 <BorderPane xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.gov.smr.buscadorsmr.MainWindowController">
@@ -88,7 +90,12 @@
         <Button fx:id="btnEdit" onAction="#onEditClicked" text="Editar" />
         <Button fx:id="btnSave" onAction="#onSaveClicked" text="Salvar" />
         <Button fx:id="btnExportIds" onAction="#onExportIdsClicked" text="Alterar ID para livre" />
-        <Button fx:id="btnVerListaId" onAction="#onAddClicked" text="Ver lista ID's livres" />
+        <SplitMenuButton fx:id="btnIdsLivres" text="IDs Livres">
+    <items>
+        <MenuItem text="Ver Lista" onAction="#onVerListaIdsMenu"/>
+        <MenuItem text="Atribuir ID" onAction="#onAtribuirIdMenu"/>
+    </items>
+</SplitMenuButton>
     </HBox>
 </bottom>
 
