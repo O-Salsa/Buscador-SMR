@@ -70,4 +70,30 @@ public class ExcelService {
 		};
 	}
 
+	public List<String> loadIdsLivres(File file) throws IOException {
+		List<String> ids = new ArrayList<>();
+		try (InputStream is = new FileInputStream(file);
+			Workbook wb = new XSSFWorkbook(is)) {
+				//pega a aba pelo nome
+				Sheet sheet = wb.getSheet("IDs Livres");
+				if (sheet == null) {
+					//se nao achar pelo nome pega a segunda aba mesmo
+					if(wb.getNumberOfSheets()>1) {
+						sheet = wb.getSheetAt(1);
+					}
+				}
+				if (sheet == null) return ids; //se nao tiver nada retorna a lista vazia
+				
+				boolean primeiraLinha = true;
+				for (Row row : sheet) {
+					if (primeiraLinha) {
+						primeiraLinha = false; // pula o cabeçalho
+						continue;
+					}
+					String id = getCellAsString(row, 0);
+					if (id != null && !id.isBlank()) ids.add(id);
+				}
+			}
+			return ids;
+	}
 }

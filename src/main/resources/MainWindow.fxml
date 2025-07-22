@@ -12,6 +12,8 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
 
 
 <BorderPane xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.gov.smr.buscadorsmr.MainWindowController">
@@ -21,6 +23,7 @@
             <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
+      	    <ComboBox fx:id="cmbFiltro" prefWidth="90.0"/>
             <TextField fx:id="txtSearch" maxWidth="-Infinity" onAction="#onSearchClicked" prefHeight="25.0" prefWidth="600.0" promptText="Buscar por NºBM, Série ou ID" HBox.hgrow="ALWAYS" />
             <Button fx:id="btnSearch" onAction="#onSearchClicked" text="Pesquisar" />
          <Region prefHeight="25.0" prefWidth="277.0" HBox.hgrow="ALWAYS" />
@@ -32,7 +35,7 @@
         <TableView fx:id="tableEquip" prefHeight="400" prefWidth="1279.0">
             <columns>
                 <TableColumn fx:id="colNroBM" prefWidth="80" text="Nº BM" />
-                <TableColumn fx:id="colId" prefWidth="60" text="ID" />
+                <TableColumn fx:id="colId" prefWidth="80" text="ID" />
                 <TableColumn fx:id="colSerie" prefWidth="92.0" text="SÉRIE" />
                 <TableColumn fx:id="colMarcaRadio" prefWidth="93.0" text="MARCA RADIO" />
                 <TableColumn fx:id="colModeloRadio" prefWidth="111.0" text="MODELO RADIO" />
@@ -88,7 +91,7 @@
         <Button fx:id="btnAdd" onAction="#onAddClicked" text="Adicionar Novo" />
         <Button fx:id="btnAltSitRadio" onAction="#onAltSitRadioClicked" text="Alterar situação Radio" />
         <Button fx:id="btnEdit" onAction="#onEditClicked" text="Editar" />
-        <Button fx:id="btnSave" onAction="#onSaveClicked" text="Salvar" />
+        <Button fx:id="btnSalvar" text="Salvar" onAction="#onSalvarIdsExcelMenu"/>
         <Button fx:id="btnExportIds" onAction="#onExportIdsClicked" text="Alterar ID para livre" />
         <SplitMenuButton fx:id="btnIdsLivres" text="IDs Livres">
     <items>
